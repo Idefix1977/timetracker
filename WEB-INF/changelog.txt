@@ -1,0 +1,301 @@
+=====================================
+Zu testen:
+richtiges summieren der Zeiten im Report bei -) Manager, -) Co-Manager und -) normaler User (Gesamt- und Zwischensumme)
+richtiges summieren der Ausgaben im Report bei -) Manager, -) Co-Manager und -) normaler User (Gesamt- und Zwischensumme)
+
+
+  //error_log("anfang: getParameter(food)-> " . print_r($request->getParameter("food"),1));
+  //error_log("anfang: cl_food -> " . print_r($cl_food,1));
+  //error_log("anfang: _POST -> " . print_r($_POST,1));
+  error_log("log: " . print_r($...,1));
+
+[+] Partielle Erweiterung
+[-] Entfernt
+[b] Bugfix
+[c] Change (Änderung)
+[f] Feature (Funktionserweiterung)
+
+Versionsnummer steht in WEB-INF\templates\footer.tpl
+
+============================================================================================================
+v1.3.87.1342.30
+============================================================================================================
+
+new files:
+  add_charge_perc_edit.php
+  WEB-INF\templates\add_charge_perc_edit.tpl
+
+modified files:
+  WEB-INF\lib\ttAccountingHelper.class.php
+  WEB-INF\resources\de.lang.php
+  WEB-INF\changelog.txt
+  WEB-INF\templates\footer.tpl
+
+============================================================================================================
+v1.3.87.1342.29
+============================================================================================================
+Mantis 0000007: 
+  Startseite soll nur Anmeldung und Passwort anzeigen
+  http://www.transformer.at/mantis/view.php?id=7
+  
+Mantis 0000008:
+  Bei Benutzer diverse Reiter ausblenden
+  http://www.transformer.at/mantis/view.php?id=8
+
+modified files:
+  index.php
+  login.php
+  WEB-INF\changelog.txt
+  WEB-INF\templates\footer.tpl
+  WEB-INF\templates\header.tpl
+  WEB-INF\templates\index.tpl
+    
+
+============================================================================================================
+v1.3.87.1342.28
+============================================================================================================
+[b] Seite für Nachkalkulation (Einnahmen, Ausgaben, Korr.faktor und Gehalt d. Mitarbeiter, Korr.faktor f. Gemeinkosten) jetzt auch für CoManager
+[b] DONE: Bei einfachen Benutzern, den Reiter „Personen“ entfernen.
+[b] beim Ausgaben editieren ist nach dem Klick auf "Ändern" der Änderungsmodus nicht automatisch verlassen worden
+[b] DONE: Bei den Einnahmen funktioniert das Bearbeiten (Ändern) nicht.
+
+
+modified files:
+  export.php
+  people.php
+  accounting.php
+  expenses_edit.php
+  WEB-INF\templates\header.tpl
+  WEB-INF\templates\footer.tpl
+  WEB-INF\lib\ttAccountingHelper.class.php
+  
+============================================================================================================
+v1.3.87.1342.27
+============================================================================================================
+[f] DONE: Wenn man ein neues Projekt anlegt, sollen die Hacken so gesetzt sein, wie beim letzten Mal waren. 
+  -> zuletzt aktive Checkboxen beim Anlegen eines neuen Projekts werden in der Datenbank gespeichert und beim
+  nächsten mal wieder hergestellt. Dies gilt nicht, wenn ein Projekt nur editiert wird.
+[i] ToDo: Tortoise SVN Client installiert und alte Datenbank wiederhergestellt
+[+] neue Tabelle (für Filter-Speicherung bei Anlegen von neuen Projekten)
+    projects_filter_set
+      *) pfs_id (id des Eintrages selbst)...AUTO_INCREMENT AND UNIQUE
+      *) pfs_name (name des filtersets)
+      *) pfs_activities (komma-getrennte liste von ids der zu selektierenden activities)
+      *) pfs_users (komma-getrennte liste von ids der zu selektierenden user)
+      *) pfs_id_user (user-id des zugehörigen users)
+    -> Installation: Export der neuen Tabellen über den phpMyAdmin und Import in "Live"-Datenbank
+    
+modified files:
+  project_add.php
+  WEB-INF\lib\ProjectHelper.class.php
+  WEB-INF\templates\footer.tpl
+      
+============================================================================================================
+v1.3.87.1342.26
+============================================================================================================
+[b] DONE: Nachkalkulation::Bei den Einnahmen steht oben „Ausgaben“ gehört auf „Einnahmen“ geändert.
+[f] DONE: Wenn man Eingaben oder Ausgaben einträgt weiß man nich für welches Projekt man das mach, da es nirgends steht.
+
+modified files:
+  income_edit.php
+  expenses_edit.php
+  income_del.php
+  expenses_del.php
+  WEB-INF\lib\ttAccountingHelper.class.php
+  WEB-INF\templates\footer.tpl
+  WEB-INF\resources\de.lang.php
+
+============================================================================================================
+v1.3.87.1342.25
+============================================================================================================
+[f] Korrekturfaktor und Lohn beim anlegen von Benutzerkonten angebbar
+[f] Korrekturfaktor und Lohn als "default"-Wert pro Benutzer änderbar und abspeicherbar
+[f] Korrekturfaktor und Lohn unter "Bearbeiten" eines Benutzers anpassbar
+
+============================================================================================================
+v1.3.87.1342.24
+============================================================================================================
+[f] Korrekturfaktor und Lohn können nun direkt über den "Bearbeiten"-Link verändert werden
+
+============================================================================================================
+v1.3.87.1342.23
+============================================================================================================
+[f] in der Nachkalkulation kann man bei "Einnahmen" und "Ausgaben" das "Datum" leer lassen; es wird dann autom.
+  das heutige Datum genommen
+
+============================================================================================================
+v1.3.87.1342.22
+============================================================================================================
+[b] Link "Bearbeiten" auf der Nachkalkulationsseite nicht anzeigen, solange kein Projekt ausgewählt ist
+[+] wenn im Modus "Bearbeiten" auf der Nachkalkulationsseite bei Einnahmen bzw. Ausgaben, dann wird dies entsprechend in der Titelleiste angezeigt
+
+modified files:
+  accounting.tpl
+  expenses_edit.php
+  expenses_edit.tpl
+  income_edit.php
+  income_edit.tpl
+
+============================================================================================================
+v1.3.87.1342.21
+============================================================================================================
+[f] Einnahmen und Ausgaben eingebbar, editierbar, löschbar
+[+] Datenvalidierung eingebaut
+[+] Datenbankhilfsfunktionen zur Datenmanipulation implementiert
+
+modified files:
+/WEB-INF/lib/TimeHelper.class.php
+/WEB-INF/lib/ttAccountingHelper.class.php
+/WEB-INF/resources/de.lang.php
+/WEB-INF/templates/accounting.tpl
+/WEB-INF/templates/expenses_del.tpl
+/WEB-INF/templates/expenses_edit.tpl
+/WEB-INF/templates/footer.tpl
+/WEB-INF/templates/income_del.tpl
+/WEB-INF/templates/income_edit.tpl
+/WEB-INF/templates/wages_edit.tpl
+accounting.php
+expenses_del.php
+expenses_edit.php
+income_del.php
+income_edit.php
+wages_edit.php
+
+============================================================================================================
+v1.3.87.1342.20
+============================================================================================================
+[f] Nachkalkulation Datenbankenstrukturen, Tabellen eingebaut
+      -) Tabellen im DB-Server fertig
+      -) Queries zum Auslesen der Daten fertig
+      -) Code zur Erzeugung der HTML-Seiten fertig (smarty-template)
+      -) Code zur Berechnung der Daten und Kommunikation mit DB-Server und HTML-Code fertig
+[+] table tt_salery added
+[+] table tt_income added
+[+] table tt_expenses added
+[+] table projects expanded by "p_add_charge_perc"
+[+] accounting.php implemented
+[+] accounting.tpl finished
+[b] bugfix in mytime_edit.php, *.tpl: beim editieren konnten bei den ausgaben keine kommawerte eingetragen werden. (beim editieren von bereits angelegten datensätzen)
+[b] bugfix in mytime_edit.php, *.tpl: beistrich wurde nicht automatisch gegen . ausgetauscht -> valid data fehler!
+[c] "Disabled" felder dunkler einfärben f. bessere erkennung (wenn zB "dauer" bei den zeiten eingetragen wird, werden die felder für "start" und "ende" autom. "disabled"
+[b] Divison durch null fehler bei der berechnung von result in % wenn einnahmen == 0
+
+modified files:
+  accounting.php
+	mytime.php
+	mytime_edit.php
+	project_add.php
+	project_edit.php
+	WEB-INF/changelog.txt
+	WEB-INF/lib/TimeHelper.class.php
+	WEB-INF/lib/ttAccountingHelper.class.php
+	WEB-INF/resources/de.lang.php
+	WEB-INF/resources/prepare.report_timesheet.php
+	WEB-INF/templates/accounting.tpl
+	WEB-INF/templates/footer.tpl
+	WEB-INF/templates/mytime.tpl
+	WEB-INF/templates/project_add.tpl
+	WEB-INF/templates/project_edit.tpl
+  
+  
+============================================================================================================
+v1.3.87.1342.19
+============================================================================================================
+[f] neue files "accounting.tpl" und "accounting.php" hinzugefügt
+      -) im header der hauptseite link für "Nachkalkulation" auf "accounting.php" geleitet
+      -) code im "accounting.php" eingefügt um tpl-file zu verarbeiten
+      -) stuktur des html-files (tabelle) im tpl-file integriert
+
+============================================================================================================
+v1.3.87.1342.18
+============================================================================================================
+[b] fixed: Bug: Wenn "Essen" oder "Ausgaben" nicht angehackt -> in Gesamt nicht anzeigen!
+[b] fixed: Bug: wenn nicht "CoManager" -> Report mit "Essen" -> Fehler!
+[-] removed some error_logs
+[+] add new page "accounting.php"
+
+============================================================================================================
+v1.3.87.1342.17
+============================================================================================================
+[f] bei „zeitraum auswählen“:
+    -	aktuelles Jahr und
+    -	vorheriges Jahr hinzufügen,
+[b] gesamtsumme und zwischensumme bei "Essen" wird nun richtig angezeigt
+[b] zwischensumme von "Essen" wenn nach Personen gruppiert -> wird nun richtig angezeigt
+[b] zwischensumme von "Essen" wenn nach Tätigkeit oder Projekt gruppiert -> es wird "-" angezeigt, da nicht darstellbar, Gesamtsumme stimmt jedoch
+
+============================================================================================================
+v1.3.87.1342.16
+============================================================================================================
+[f] Essen bei den Reports als Gesamtsumme eingebaut
+[f] Essen bei den Reports als Zwischensumme eingebaut
+[f] Essen bei den Reports in der Einzelstatistik eingebaut
+[f] Ausgaben und Kommentar bei den Reports als Gesamtsumme eingebaut
+[f] Ausgaben und Kommentar bei den Reports als Zwischensumme eingebaut
+[f] Ausgaben und Kommentar bei den Reports in der Einzelstatistik eingebaut
+[+] prepare.report_timesheet.php added sql queries
+[+] report_timesheet.php added necessary html code
+
+============================================================================================================
+v1.3.87.1342.15
+============================================================================================================
+[b] set food failed in IE8 (worked fine for FF, Chrome,...) -> in mytime.tpl add timeout function after post before reload page
+
+
+============================================================================================================
+v1.3.87.1342.14
+============================================================================================================
+[c] changed files: mytime.php -> abarbeitung der parameter beim POST cmd war falsch
+[b] fix: wenn man essen anhakt, kann man an diesem Tag keine Zeiten mehr eingeben.
+[b] fix: wenn man auf "Abschicken" klickt, und an diesem Tag "Essen" ausgewählt war, wurde es wieder de-selektiert
+[b] fix: wenn man auf "Tägliche Arbeit für..:" klickt und an diesem Tag war "Essen" ausgewÃ¤hlt, wurde es de-selektiert
+
+
+============================================================================================================
+v1.3.87.1342.13
+============================================================================================================
+[f] Ausgaben und Beschreibung der Ausgaben bei den Filtern eingebaut
+[f] Ausgaben und Beschreibung der Ausgaben bei den Reports eingebaut
+
+[+] reports.php -> expenses & expenses_desc checkbox control, load data from session bean
+[+] ReportHelper.class.php -> rfs_cb_expenses, rfs_cb_expenses_desc to loadReportFilter(), insertFilter()
+[+] ReportHelper.class.php -> chexpenses, chexpenses_desc to updateFilter(), insertFilter(), loadReportFilter()
+[+] report_filter.tpl -> table expanded with $forms.reportForm.chexpenses.control and $forms.reportForm.chexpenses_desc.control
+[+] mysql.sql -> add `rfs_cb_expenses` tinyint(4) NOT NULL DEFAULT '0', and `rfs_cb_expenses_desc` tinyint(4) NOT NULL DEFAULT '0', to table `report_filter_set` ()
+[+] live database: add `rfs_cb_expenses` tinyint(4) NOT NULL DEFAULT '0', and `rfs_cb_expenses_desc` tinyint(4) NOT NULL DEFAULT '0', to table `report_filter_set` ()
+[+] de.lang.php -> translation for 'form.reports.expenses' => 'Ausgaben', and 'form.reports.expenses_desc' => 'Ausgaben Beschreibung',
+[+] prepare.report_timesheet.php attributes for chexpenses, chexpenses_desc
+
+
+============================================================================================================
+v1.3.87.1342.12
+============================================================================================================
+feature:  changelog.txt in WEB-INF angelegt
+änderung: checkbox bei essensliste in mytime entfernt
+änderung: essensliste tabellenüberschrift von "Essen" nach "Tage mit Essen"
+bugfix:   liste der täglichen arbeit richtig eingerückt in tablle, wenn essens-historie leer
+änderung: neue spalte rfs_cb_food f. reportfilter (ALTER table report_filter_set ADD `rfs_cb_food` tinyint(4) NOT NULL DEFAULT '0')
+änderung: rfs_cb_food in mysql.sql hinzugefügt
+feature:  rfs_cb_food filter flag wird in db abgespeichter und auch wieder geladen
+änderung: rfs_cb_food default value from "" to "1"
+feature:  erzeugen der tabelle "food_log" im mysql.sql file hinzugefügt
+änderung: ändern der spaltennamen `al_timestamp`, `al_user_id`, `al_date`, `al_food` nach `fl_timestamp`, `fl_user_id`, `fl_date`, `fl_food` 
+
+
+============================================================================================================
+v1.3.87.1342.11
+============================================================================================================
+bugfix:   essensaufzeichnungen werden nun gelöscht wenn man sie weghackt…
+bugfix:   betrag kann nun auch kommastellen enthalten (float statt int)
+
+
+============================================================================================================
+v1.3.87.1342
+============================================================================================================
+feature:  bei mytime der betrag für die ausgaben kann jetzt auch mit "," anstatt "." eingegeben werden
+feature:  mytime und mytimeedit: ausgaben und notiz zu ausgaben eingebar
+feature:  checkbox für essen pro tag auswählbar
+feature:  essen historie wird pro monat unter dem kalender angezeigt
+änderung: checkbox "abrechnung" ausgeblendet
+änderung: unvollständige einträge sind nun "abschließbar" (zB einträge ohne dauer bzw. von...bis zeit)
+änderung: projekt zu sourcecontrol hinzugefügt (SVN)
